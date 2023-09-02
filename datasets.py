@@ -55,45 +55,9 @@ class Chasedb1Datasets(Dataset):
 
         image = image[np.newaxis,:,:]
         label = label[np.newaxis,:,:]
-        #image = torch.Tensor(image).squeeze(0)
-        # label = torch.Tensor(label).squeeze(0)
-        #
-        # print(image.shape)
-        # print(label.shape)
-
         # 处理标签，将像素值为255的改为1
         if label.max() > 1:
             label = label / 255
-        # 随机进行数据增强，为2时不做处理
-        # flipCode = random.choice([-1, 0, 1, 2])
-        # if flipCode != 2:
-        #     image = self.augment(image, flipCode)
-        #     label = self.augment(label, flipCode)
-        return image, label
-
-
-    # def __getitem__(self, idx):
-    #     # print(self.img_list[idx])
-    #     img = cv2.imread(self.img_list[idx], cv2.IMREAD_GRAYSCALE)
-    #     img = Image.fromarray(img)
-    #
-    #     label = cv2.imread(self.manual[idx], cv2.IMREAD_GRAYSCALE)
-    #     label = Image.fromarray(label)
-    #     # print(self.manual[idx])
-    #
-    #     # if self.transforms is not None:
-    #         # img = self.transforms(img)
-    #     img = img.resize((1, img.shape[0],img.shape[1]))
-    #     img = np.array(img)
-    #     img = torch.Tensor(img)
-    #     img = img.unsqueeze(0)
-    #
-    #     label = label.resize(((1, label.shape[0],label.shape[1])))  # 调整标签大小
-    #     label = np.array(label)  # 转换标签为 NumPy 数组
-    #     label = torch.Tensor(label)  # 转换为 PyTorch 张量
-    #     label = label.unsqueeze(0)
-
-
         return image, label
 
     def __len__(self):
